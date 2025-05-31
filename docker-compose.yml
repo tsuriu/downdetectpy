@@ -1,0 +1,19 @@
+services:
+  downdetector:
+    build: .
+    image: downdetector-scraper
+    container_name: downdetector
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - playwright-data:/ms-playwright
+    # Uncomment for production (limits resources)
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '1'
+    #       memory: 512M
+
+volumes:
+  playwright-data:
