@@ -18,29 +18,48 @@ async def get_status(
     end_time = time.perf_counter()
 
     duration = round(end_time - start_time, 3)  # Rounded to milliseconds
+
     if not result:
-        return {"error": "Failed to retrieve data", "duration": duration}
+        return {"error": "Failed to retrieve data", "duration_seconds": duration}
     
-    return {
-        "duration_seconds": duration,
-        **result
-    }
+    # Check if result is a dictionary before unpacking
+    if isinstance(result, dict):
+        return {
+            "duration_seconds": duration,
+            **result
+        }
+    else:
+        # If result is a list or other type, wrap it appropriately
+        return {
+            "duration_seconds": duration,
+            "data": result
+        }
 
 @app.get("/companylist")
-async def get_companiees(
+async def get_companies(
     domain: str = Query("com.br", description="Downdetector domain (default: com.br)"),
 ):
     start_time = time.perf_counter()
     result = await scrape_downdetector_links(domain)
     end_time = time.perf_counter()
 
-    duration = round(end_time - start_time, 3)  # Rounded to milliseconds
+    duration = round(end_time - start_time, 3)
+
     if not result:
-        return {"error": "Failed to retrieve data", "duration": duration}
-    return {
-        "duration_seconds": duration,
-        **result
-    }
+        return {"error": "Failed to retrieve data", "duration_seconds": duration}
+
+    # Check if result is a dictionary before unpacking
+    if isinstance(result, dict):
+        return {
+            "duration_seconds": duration,
+            **result
+        }
+    else:
+        # If result is a list or other type, wrap it appropriately
+        return {
+            "duration_seconds": duration,
+            "companies": result
+        }
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
