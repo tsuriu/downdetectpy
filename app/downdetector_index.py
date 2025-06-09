@@ -24,24 +24,83 @@ async def scrape_downdetector_links(domain: str = "com.br"):
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
             await asyncio.sleep(2)
             
+            # Updated selector based on the HTML sample
             cards = await page.query_selector_all('div.company-index a[href]')
             
             for card in cards:
                 try:
                     link = await card.get_attribute('href')
                     full_link = f"https://downdetector.{domain}{link}" if link and link.startswith('/') else link
-                    company_name = link.split('/')[2] if link and len(link.split('/')) > 2 else 'unknown'
 
-                    # Try to get the logo inside the card
+                    # Extract company name from href or title
+                    company_name = link.split('/')[2] if link and len(link.split('/')) > 2 else 'unknown'
+                    title = await card.get_attribute('title')
+                    if title:
+                        company_name = title
+
+                    # Get the logo - looking at data-original first, then src
                     img = await card.query_selector('img')
                     logo_url = None
                     if img:
-                        logo_url = await img.get_attribute('data-original') or await img.get_attribute('src')
+                        logo_url = await img.get_attribute('data-original')
+                        if not logo_url:
+                            logo_url = await img.get_attribute('src')
+                        # Clean up logo URL if needed
+                        if logo_url and logo_url.startswith('//'):
+                            logo_url = f'https:{logo_url}'
+                        elif logo_url and not logo_url.startswith('http'):
+                            logo_url = f'https://downdetector.{domain}{logo_url}'
+
+
+                    # Get SVG data attributes
+                    svg_data = {}
+                    svg_element = await card.query_selector('svg')
+                    if svg_element:
+                        # Extract all SVG data attributes
+                        svg_data['data_values'] = await svg_element.get_attribute('data-values')
+                        svg_data['data_min'] = await svg_element.get_attribute('data-min')
+                        svg_data['data_max'] = await svg_element.get_attribute('data-max')
+                        svg_data['data_mean'] = await svg_element.get_attribute('data-mean')
+                        svg_data['data_stddev'] = await svg_element.get_attribute('data-stddev')
+
+                        # If min/max/mean/stddev are null, try to calculate from data-values
+                        if svg_data['data_values'] and (not svg_data['data_min'] or not svg_data['data_max'] or not svg_data['data_mean']):
+                            try:
+                                # Clean and parse the data-values string into numbers
+                                # Remove brackets, quotes, and other non-numeric characters except commas and numbers
+                                cleaned_data = svg_data['data_values'].replace('[', '').replace(']', '').replace('"', '').replace("'", '')
+                                values = []
+                                for x in cleaned_data.split(','):
+                                    x = x.strip()
+                                    if x and x.replace('.', '').replace('-', '').isdigit():
+                                        values.append(float(x))
+                                if values:
+                                    if not svg_data['data_min']:
+                                        svg_data['data_min'] = str(min(values))
+                                    if not svg_data['data_max']:
+                                        svg_data['data_max'] = str(max(values))
+                                    if not svg_data['data_mean']:
+                                        svg_data['data_mean'] = str(sum(values) / len(values))
+                                    if not svg_data['data_stddev']:
+                                        # Calculate standard deviation
+                                        mean_val = sum(values) / len(values)
+                                        variance = sum((x - mean_val) ** 2 for x in values) / len(values)
+                                        svg_data['data_stddev'] = str(variance ** 0.5)
+                            except (ValueError, AttributeError) as e:
+                                print(f"Error calculating SVG stats: {e}")
+
+                        # Extract last status from SVG class (first string split by space)
+                        svg_class = await svg_element.get_attribute('class')
+                        if svg_class:
+                            svg_data['last_status'] = svg_class.split()[0] if svg_class.split() else None
+                        else:
+                            svg_data['last_status'] = None
 
                     links.append({
                         "full_company_link": full_link,
                         "company_name": company_name,
-                        "logo_url": logo_url
+                        "logo_url": logo_url,
+                        "svg_data": svg_data
                     })
                 except Exception as e:
                     print(f"Error processing card: {e}")
