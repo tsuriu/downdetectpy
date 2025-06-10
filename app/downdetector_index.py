@@ -1,5 +1,9 @@
 from playwright.async_api import async_playwright
 import asyncio
+import re
+
+def rgb_to_hex(r, g, b):
+    return '#{:02x}{:02x}{:02x}'.format(r, g, b)
 
 async def scrape_downdetector_links(domain: str = "com.br"):
     url = f"https://downdetector.{domain}"
@@ -52,6 +56,7 @@ async def scrape_downdetector_links(domain: str = "com.br"):
                             logo_url = f'https://downdetector.{domain}{logo_url}'
 
 
+
                     # Get SVG data attributes
                     svg_data = {}
                     svg_element = await card.query_selector('svg')
@@ -95,6 +100,82 @@ async def scrape_downdetector_links(domain: str = "com.br"):
                             svg_data['last_status'] = svg_class.split()[0] if svg_class.split() else None
                         else:
                             svg_data['last_status'] = None
+
+                        # Extract color from sparkline - try multiple approaches
+                        sparkline_color = None
+
+                        # Try to find path element with sparkline class
+                        sparkline_path = await svg_element.query_selector('path.sparkline')
+                        if sparkline_path:
+                            # Try stroke attribute first
+                            stroke = await sparkline_path.get_attribute('stroke')
+                            if stroke and stroke != 'none':
+                                sparkline_color = stroke
+                            else:
+                                # Try to get computed style
+                                try:
+                                    computed_color = await sparkline_path.evaluate('(element) => getComputedStyle(element).stroke')
+                                    if computed_color and computed_color != 'none':
+                                        sparkline_color = computed_color
+                                except:
+                                    pass
+
+                                # Try style attribute
+                                if not sparkline_color:
+                                    style = await sparkline_path.get_attribute('style')
+                                    if style and 'stroke:' in style:
+                                        stroke_match = re.search(r'stroke:\s*([^;]+)', style)
+                                        if stroke_match:
+                                            sparkline_color = stroke_match.group(1).strip()
+
+                        # Fallback: try other path elements
+                        if not sparkline_color:
+                            path_elements = await svg_element.query_selector_all('path')
+                            for path in path_elements:
+                                stroke = await path.get_attribute('stroke')
+                                if stroke and stroke != 'none':
+                                    sparkline_color = stroke
+                                    break
+
+                                # Try computed style for each path
+                                try:
+                                    computed_color = await path.evaluate('(element) => getComputedStyle(element).stroke')
+                                    if computed_color and computed_color != 'none' and computed_color != 'rgb(0, 0, 0)':
+                                        sparkline_color = computed_color
+                                        break
+                                except:
+                                    continue
+
+                        svg_data['sparkline_color'] = sparkline_color
+
+                        # Convert RGB color to HEX if needed
+                        sparkline_color_hex = None
+                        if sparkline_color:
+                            # Check if it's already a hex color
+                            if sparkline_color.startswith('#'):
+                                sparkline_color_hex = sparkline_color
+                            # Check if it's an RGB color
+                            elif sparkline_color.startswith('rgb('):
+                                try:
+                                    # Extract RGB values from rgb(r, g, b) format
+                                    rgb_match = re.search(r'rgb\((\d+),\s*(\d+),\s*(\d+)\)', sparkline_color)
+                                    if rgb_match:
+                                        r, g, b = map(int, rgb_match.groups())
+                                        sparkline_color_hex = rgb_to_hex(r, g, b)
+                                except:
+                                    pass
+                            # Check if it's an RGBA color
+                            elif sparkline_color.startswith('rgba('):
+                                try:
+                                    # Extract RGB values from rgba(r, g, b, a) format
+                                    rgba_match = re.search(r'rgba\((\d+),\s*(\d+),\s*(\d+),\s*[\d.]+\)', sparkline_color)
+                                    if rgba_match:
+                                        r, g, b = map(int, rgba_match.groups())
+                                        sparkline_color_hex = rgb_to_hex(r, g, b)
+                                except:
+                                    pass
+
+                        svg_data['sparkline_color_hex'] = sparkline_color_hex
 
                     links.append({
                         "full_company_link": full_link,
