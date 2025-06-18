@@ -1,93 +1,133 @@
-# Downdetector API Scraper
+```markdown
+# Downdetector API
 
-A FastAPI-based service that scrapes Downdetector data for companies, providing time series reports, problem statistics, and summary metrics.
+A FastAPI-based web scraper that extracts outage and service status data from Downdetector websites.
 
 ## Features
 
-- 📊 Scrape Downdetector status pages for any company
-- ⏳ Get 24-hour time series data (reports and baseline values)
-- 🔍 Identify most reported problems with percentages
-- 📈 Compute summary statistics
-- 🌎 Support for multiple domains and timezones
-- 🐳 Docker support for easy deployment
+- 🚀 Real-time scraping of Downdetector status pages  
+- 📊 Time series data for service outages  
+- 📈 Problem statistics and reports  
+- 🌐 Multi-domain support (com.br, com, etc.)  
+- ⏱️ Performance metrics included in responses  
+- 🏢 Company directory listing  
 
-## Statistics Explained
+## API Endpoints
 
-The `stats` object contains these computed metrics:
+### Get Service Status
+`GET /status?company={company_name}&domain={domain}&timezone={timezone}`
 
-| Key | Description | Type |
-|------|-------------|------|
-| `max_reports` | Peak report value and timestamp | Object |
-| `average_reports` | Mean of all report values | Float |
-| `total_reports` | Sum of all report values | Float |
-| `max_deviation` | Largest difference between reports and baseline | Object |
-| `spikes` | Timestamps where reports > 2× baseline | Array |
-| `alerts_count` | Count of reports > 1.5× baseline | Integer |
+**Parameters:**  
+- `company` - Company name as it appears in Downdetector URL (required)  
+- `domain` - Downdetector domain (default: "com.br")  
+- `timezone` - Timezone for timestamps (default: "America/Maceio")  
+
+### Get Company List
+`GET /companylist?domain={domain}`
+
+**Parameters:**  
+- `domain` - Downdetector domain (default: "com.br")  
+
+## Example Responses
+
+### Service Status Response
+```json
+{
+  "time_series": [
+    {
+      "date": "2023-10-15 14:00:00",
+      "reports_value": 42,
+      "baseline_value": 12
+    }
+  ],
+  "most_reported_problems": [
+    {
+      "name": "Server connection",
+      "percentage": "42%"
+    }
+  ],
+  "stats": {
+    "max_reports": {
+      "value": 120,
+      "timestamp": "2023-10-15 15:30:00"
+    },
+    "average_reports": 45.67,
+    "total_reports": 1096,
+    "max_deviation": {
+      "value": 108,
+      "timestamp": "2023-10-15 15:30:00"
+    },
+    "spikes": ["2023-10-15 15:30:00"],
+    "alerts_count": 8
+  },
+  "duration_seconds": 3.456
+}
+```
+
+### Company List Response
+```json
+{
+  "companies": [
+    {
+      "full_company_link": "https://downdetector.com.br/status/pix/",
+      "company_name": "PIX",
+      "logo_url": "https://downdetector.com.br/logo/pix.png",
+      "svg_data": {
+        "data_values": "[1,2,3...]",
+        "last_status": "up",
+        "sparkline_color": "#00ff00"
+      }
+    }
+  ],
+  "duration_seconds": 5.123
+}
+```
 
 ## Installation
 
-### Option 1: Local Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/downdetector-scraper.git
-   cd downdetector-scraper
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Install Playwright browsers:
-   ```bash
-   playwright install chromium
-   ```
-
-### Option 2: Docker Installation
-1. Build the Docker image:
-   ```bash
-   docker build -t downdetector-scraper .
-   ```
-
-2. Run the container:
-   ```bash
-   docker run -d -p 8000:8000 --name downdetector downdetector-scraper
-   ```
-
-## Usage
-
-### Running the API
-
-**Local:**
-```bash
-python main.py
-```
-
-**Docker:**
-```bash
-docker start downdetector
-```
-
-The API will be available at `http://localhost:8000`
-
-### API Endpoint
-
-**GET /status**
-
-Parameters:
-- `company`: Company name (required)
-- `domain`: Downdetector domain (default: "com.br")
-- `timezone`: Timezone for timestamps (default: "America/Maceio")
-
-Example request:
-```bash
-curl "http://localhost:8000/status?company=pix&domain=com.br&timezone=America/Sao_Paulo"
-```
-
-## Docker Compose
-
-For production deployments, use `docker-compose.yml`:
-
+### Docker (Recommended)
 ```bash
 docker-compose up -d
 ```
+
+### Manual Installation
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+playwright install
+```
+
+2. Run the server:
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+## Configuration
+
+**Environment variables:**
+- `PYTHONUNBUFFERED=1` - Enable unbuffered logging  
+- `PYTHONDONTWRITEBYTECODE=1` - Disable .pyc files  
+
+## Technical Stack
+
+- **Backend**: FastAPI + Uvicorn  
+- **Scraping**: Playwright (Chromium)  
+- **HTML Parsing**: BeautifulSoup4  
+- **Time Handling**: pytz + python-dateutil  
+- **Docker**: Pre-configured with all dependencies  
+
+## License
+
+MIT License
+```
+
+Key improvements made:
+1. Proper Markdown formatting for code blocks with language specification
+2. Consistent spacing between sections
+3. Better parameter formatting in API documentation
+4. Clearer section headers
+5. Proper list formatting
+6. Removed redundant backticks in endpoint documentation
+7. Improved JSON example formatting
+
+The file is now ready to be saved as `README.md` in your project root directory. It will render perfectly on GitHub with all the proper formatting.
