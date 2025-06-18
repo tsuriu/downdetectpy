@@ -1,36 +1,56 @@
-```markdown
-# Downdetector API
+---
 
-A FastAPI-based web scraper that extracts outage and service status data from Downdetector websites.
 
-## Features
+# 📡 Downdetector API
 
-- 🚀 Real-time scraping of Downdetector status pages  
-- 📊 Time series data for service outages  
-- 📈 Problem statistics and reports  
-- 🌐 Multi-domain support (com.br, com, etc.)  
-- ⏱️ Performance metrics included in responses  
-- 🏢 Company directory listing  
 
-## API Endpoints
+A **FastAPI-based web scraper** that extracts outage and service status data from Downdetector websites.
 
-### Get Service Status
-`GET /status?company={company_name}&domain={domain}&timezone={timezone}`
+---
 
-**Parameters:**  
-- `company` - Company name as it appears in Downdetector URL (required)  
-- `domain` - Downdetector domain (default: "com.br")  
-- `timezone` - Timezone for timestamps (default: "America/Maceio")  
+## 🚀 Features
 
-### Get Company List
-`GET /companylist?domain={domain}`
+- Real-time scraping of Downdetector status pages  
+- Time series data for service outages  
+- Problem statistics and detailed reports  
+- Multi-domain support (`.com.br`, `.com`, etc.)  
+- Performance metrics included in responses  
+- Company directory listing with logos and sparklines  
 
-**Parameters:**  
-- `domain` - Downdetector domain (default: "com.br")  
+---
 
-## Example Responses
+## 📘 API Endpoints
 
-### Service Status Response
+### 🔎 Get Service Status
+
+GET /status?company={company_name}&domain={domain}&timezone={timezone}
+
+**Query Parameters:**
+
+| Name       | Description                                                   | Default             |
+|------------|---------------------------------------------------------------|---------------------|
+| `company`  | Company name as it appears in the Downdetector URL (required) | –                   |
+| `domain`   | Downdetector domain                                           | `com.br`            |
+| `timezone` | Timezone for timestamps (TZ string)                          | `America/Maceio`    |
+
+---
+
+### 🏢 Get Company List
+
+GET /companylist?domain={domain}
+
+**Query Parameters:**
+
+| Name     | Description                  | Default   |
+|----------|------------------------------|-----------|
+| `domain` | Downdetector domain to query | `com.br`  |
+
+---
+
+## 📥 Example Responses
+
+### ✅ Service Status Response
+
 ```json
 {
   "time_series": [
@@ -64,7 +84,10 @@ A FastAPI-based web scraper that extracts outage and service status data from Do
 }
 ```
 
-### Company List Response
+---
+
+🧾 Company List Response
+
 ```json
 {
   "companies": [
@@ -83,51 +106,21 @@ A FastAPI-based web scraper that extracts outage and service status data from Do
 }
 ```
 
-## Installation
+---
 
-### Docker (Recommended)
-```bash
-docker-compose up -d
-```
+🛠️ Installation
 
-### Manual Installation
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-playwright install
-```
+🐳 Docker (Recommended)
 
-2. Run the server:
-```bash
-uvicorn app.main:app --host 0.0.0.0 --port 8000
-```
+`docker-compose up -d`
 
-## Configuration
+💻 Manual Setup
+	1.	Install dependencies:
 
-**Environment variables:**
-- `PYTHONUNBUFFERED=1` - Enable unbuffered logging  
-- `PYTHONDONTWRITEBYTECODE=1` - Disable .pyc files  
+`pip install -r requirements.txt & playwright install`
 
-## Technical Stack
+  2. Run the FastAPI server:
 
-- **Backend**: FastAPI + Uvicorn  
-- **Scraping**: Playwright (Chromium)  
-- **HTML Parsing**: BeautifulSoup4  
-- **Time Handling**: pytz + python-dateutil  
-- **Docker**: Pre-configured with all dependencies  
+`uvicorn app.main:app --host 0.0.0.0 --port 8000`
 
-## License
-
-MIT License
-```
-
-Key improvements made:
-1. Proper Markdown formatting for code blocks with language specification
-2. Consistent spacing between sections
-3. Better parameter formatting in API documentation
-4. Clearer section headers
-5. Proper list formatting
-6. Removed redundant backticks in endpoint documentation
-7. Improved JSON example formatting
-
-The file is now ready to be saved as `README.md` in your project root directory. It will render perfectly on GitHub with all the proper formatting.
+---
