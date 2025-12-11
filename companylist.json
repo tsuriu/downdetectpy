@@ -1,0 +1,725 @@
+{
+  "duration_seconds": 9.989,
+  "companies": [
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/claro/",
+      "company_name": "Claro",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/3e41b/Claro-logo_1_test.png",
+      "svg_data": {
+        "data_values": "[7, 14, 2, 1, 6, 0, 0, 8, 2, 4, 3, 1, 2, 0, 3, 5, 6, 7, 7, 4, 9, 3, 12, 21, 10, 13, 15, 11, 22, 42, 23, 16, 22, 22, 29, 17, 33, 48, 31, 27, 45, 59, 54, 55, 56, 46, 60, 52, 64, 48, 80, 55, 68, 88, 102, 79, 117, 102, 111, 88, 146, 178, 134, 138, 158, 127, 140, 165, 158, 144, 140, 176, 164, 173, 149, 150, 128, 104, 155, 202, 162, 150, 153, 137, 115, 111, 129, 70, 63, 93, 66, 61, 35, 44, 33, 42]",
+        "data_min": "0.0",
+        "data_max": "202.0",
+        "data_mean": "66.97916666666667",
+        "data_stddev": "58.26144007236309",
+        "last_status": "warning",
+        "sparkline_color": "rgb(248, 160, 21)",
+        "sparkline_color_hex": "#f8a015"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/vivo/",
+      "company_name": "Vivo",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/e364a/VIVO-logo.png",
+      "svg_data": {
+        "data_values": "[34, 24, 13, 9, 3, 3, 4, 1, 6, 1, 3, 3, 3, 4, 5, 8, 5, 16, 8, 19, 7, 15, 26, 30, 27, 22, 24, 28, 36, 41, 52, 53, 72, 61, 44, 79, 85, 80, 60, 71, 83, 48, 61, 63, 70, 73, 101, 122, 102, 91, 93, 111, 153, 130, 139, 121, 112, 116, 140, 127, 128, 129, 140, 106, 103, 93, 103, 115, 111, 127, 113, 84, 106, 91, 113, 95, 96, 91, 94, 64, 63, 52, 94, 58, 66, 43, 69, 41, 35, 30, 27, 23, 13, 17, 11, 11]",
+        "data_min": "1.0",
+        "data_max": "153.0",
+        "data_mean": "61.416666666666664",
+        "data_stddev": "43.71585969518258",
+        "last_status": "warning",
+        "sparkline_color": "rgb(248, 160, 21)",
+        "sparkline_color_hex": "#f8a015"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/tim/",
+      "company_name": "TIM",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/e47e8/TIM_logo_2016_1.png",
+      "svg_data": {
+        "data_values": "[2, 1, 3, 1, 0, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 3, 3, 4, 2, 8, 4, 4, 6, 10, 11, 11, 10, 18, 8, 9, 13, 17, 33, 32, 22, 28, 28, 39, 26, 19, 52, 58, 41, 25, 44, 50, 43, 54, 52, 68, 99, 99, 80, 70, 94, 104, 114, 98, 78, 88, 81, 103, 71, 91, 78, 125, 105, 87, 100, 85, 93, 94, 115, 85, 66, 83, 68, 54, 59, 59, 60, 64, 50, 57, 41, 44, 24, 32, 34, 29, 32, 18, 12]",
+        "data_min": "0.0",
+        "data_max": "125.0",
+        "data_mean": "41.635416666666664",
+        "data_stddev": "36.46148647079165",
+        "last_status": "warning",
+        "sparkline_color": "rgb(248, 160, 21)",
+        "sparkline_color_hex": "#f8a015"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/hostinger-us/",
+      "company_name": "Hostinger",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/9e67b/Hostinger_5kIisw7.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 8, 10, 5]",
+        "data_min": "0.0",
+        "data_max": "10.0",
+        "data_mean": "0.4791666666666667",
+        "data_stddev": "1.527383156105748",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/youtube/",
+      "company_name": "YouTube",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/a7324/image17.png",
+      "svg_data": {
+        "data_values": "[6, 0, 5, 1, 0, 5, 5, 1, 4, 1, 1, 0, 0, 1, 1, 4, 2, 4, 0, 0, 1, 2, 1, 2, 2, 2, 2, 4, 3, 5, 9, 0, 8, 3, 7, 6, 3, 3, 5, 11, 12, 6, 5, 4, 3, 2, 3, 9, 5, 5, 7, 8, 6, 10, 4, 14, 8, 8, 20, 13, 2, 6, 2, 7, 2, 5, 2, 7, 10, 5, 8, 3, 0, 10, 4, 5, 12, 2, 7, 3, 7, 9, 5, 6, 7, 7, 8, 1, 10, 0, 2, 8, 2, 6, 2, 0]",
+        "data_min": "0.0",
+        "data_max": "20.0",
+        "data_mean": "4.729166666666667",
+        "data_stddev": "3.7010110292849556",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/whatsapp/",
+      "company_name": "Whatsapp",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/7653a/whatsapp-messenger.png",
+      "svg_data": {
+        "data_values": "[0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 6, 6, 8, 7, 12, 8, 17, 16, 13, 36, 40, 33, 33, 43, 33, 34, 29, 40, 34, 24, 41, 34, 30, 29, 26, 20, 26, 37, 24, 21, 33, 43, 31, 27, 33, 39, 42, 33, 31, 41, 51, 32, 32, 31, 32, 22, 25, 26, 13, 13, 9, 14, 20, 14, 16, 11, 24, 14, 8, 12, 15, 21, 11, 8, 11, 11, 19, 7, 10, 6, 12, 20, 6, 3, 5, 10, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "51.0",
+        "data_mean": "17.875",
+        "data_stddev": "13.912861256166302",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/banco-itau/",
+      "company_name": "Banco Itaú",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/efac2/Itau-logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 2, 2, 1, 2, 4, 3, 6, 3, 12, 4, 10, 15, 19, 13, 14, 13, 20, 14, 22, 14, 28, 58, 31, 22, 7, 10, 6, 24, 16, 16, 14, 8, 14, 4, 7, 11, 6, 3, 8, 1, 2, 6, 2, 2, 8, 7, 3, 6, 4, 1, 0, 0, 4, 5, 4, 0, 2, 8, 1, 2, 2, 1, 1, 0, 0, 1, 1, 3, 1, 4]",
+        "data_min": "0.0",
+        "data_max": "58.0",
+        "data_mean": "5.958333333333333",
+        "data_stddev": "8.74394631858077",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/instagram/",
+      "company_name": "Instagram",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/58f18/Instagram_Logo_Large.png",
+      "svg_data": {
+        "data_values": "[2, 2, 1, 0, 0, 2, 0, 1, 0, 4, 0, 1, 3, 0, 0, 1, 0, 0, 0, 0, 3, 7, 4, 3, 2, 4, 10, 11, 6, 5, 8, 6, 15, 7, 15, 4, 14, 8, 9, 6, 8, 5, 7, 11, 5, 6, 8, 6, 7, 9, 6, 9, 4, 6, 10, 7, 7, 10, 4, 9, 6, 8, 9, 10, 9, 8, 7, 6, 3, 8, 6, 7, 5, 15, 9, 3, 10, 15, 4, 9, 7, 17, 3, 5, 7, 9, 4, 6, 4, 1, 3, 1, 2, 2, 3, 1]",
+        "data_min": "0.0",
+        "data_max": "17.0",
+        "data_mean": "5.625",
+        "data_stddev": "3.984997908824211",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/algar/",
+      "company_name": "Algar",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/778a6/Algar_Telecom_logo.png",
+      "svg_data": {
+        "data_values": "[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 2, 9, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 2, 0, 0, 3, 0, 1, 1, 0, 2, 1, 0, 2, 0, 0, 1, 1, 0, 1, 6, 0, 1, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 6, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "9.0",
+        "data_mean": "0.6458333333333334",
+        "data_stddev": "1.4859001667526508",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/googlegemini/",
+      "company_name": "Google Gemini",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/43446/download_pX7A8yZ.png",
+      "svg_data": {
+        "data_values": "[4, 3, 4, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 4, 4, 3, 8, 6, 8, 4, 6, 12, 10, 9, 8, 9, 7, 7, 10, 21, 9, 6, 2, 9, 10, 8, 12, 11, 5, 5, 7, 8, 10, 6, 8, 4, 3, 12, 2, 7, 7, 5, 3, 3, 4, 2, 0, 1, 1, 8, 1, 6, 9, 3, 3, 1, 3, 1, 1, 1, 3, 1, 2, 4, 1, 0, 0, 2, 2, 0, 0, 1, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "21.0",
+        "data_mean": "3.9270833333333335",
+        "data_stddev": "3.9849842943716713",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/amino/",
+      "company_name": "Amino Apps",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/7c3fa/amino-apps-logo_N5hNlGt.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 6, 4, 2, 3, 8, 2, 6, 9, 4, 5, 5, 2, 2, 2, 1, 5, 1, 1, 5, 2, 0]",
+        "data_min": "0.0",
+        "data_max": "13.0",
+        "data_mean": "0.9166666666666666",
+        "data_stddev": "2.2204854324123713",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/pix/",
+      "company_name": "Pix",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/b4f3f/pix-logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 1, 2, 0, 1, 0, 2, 2, 10, 3, 3, 6, 2, 3, 2, 4, 4, 4, 3, 3, 1, 4, 7, 7, 3, 5, 5, 3, 3, 7, 6, 1, 2, 1, 0, 10, 12, 8, 27, 6, 24, 36, 22, 17, 8, 27, 19, 12, 10, 15, 10, 6, 7, 4, 5, 3, 2, 5, 2, 6, 3, 0, 2, 3, 2, 1, 3, 1, 1, 2, 2, 1, 0, 1, 3, 2, 0, 3, 3, 2, 1]",
+        "data_min": "0.0",
+        "data_max": "36.0",
+        "data_mean": "4.739583333333333",
+        "data_stddev": "6.54669890044254",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/cloudflare/",
+      "company_name": "Cloudflare",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/9501e/cloudflare_3.png",
+      "svg_data": {
+        "data_values": "[4, 1, 1, 5, 0, 1, 4, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 1, 1, 1, 2, 0, 5, 1, 4, 9, 22, 17, 4, 8, 11, 6, 17, 21, 13, 14, 8, 5, 7, 5, 6, 8, 4, 8, 16, 13, 10, 7, 9, 10, 4, 10, 5, 15, 9, 9, 15, 4, 3, 2, 3, 6, 2, 7, 7, 2, 1, 3, 3, 3, 1, 1, 5, 1, 1, 3, 2, 1, 5, 1, 0, 2, 2, 4, 0, 1, 0, 2, 1, 1, 1, 1, 0]",
+        "data_min": "0.0",
+        "data_max": "22.0",
+        "data_mean": "4.604166666666667",
+        "data_stddev": "5.030074483102169",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/oi/",
+      "company_name": "Oi",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/17630/OI-logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 2, 0, 3, 0, 0, 0, 8, 3, 0, 2, 0, 4, 1, 2, 4, 0, 8, 12, 6, 6, 5, 2, 2, 2, 0, 10, 2, 6, 1, 0, 0, 0, 2, 6, 3, 0, 4, 4, 1, 0, 3, 4, 2, 2, 3, 4, 4, 1, 1, 7, 57, 25, 1, 3, 1]",
+        "data_min": "0.0",
+        "data_max": "57.0",
+        "data_mean": "2.5208333333333335",
+        "data_stddev": "6.523960911303977",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/steam/",
+      "company_name": "Steam",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/fadb2/Steam-Logo.png",
+      "svg_data": {
+        "data_values": "[1, 0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 2, 1, 1, 1, 2, 1, 0, 0, 1, 2, 0, 0, 1, 3, 1, 0, 0, 3, 0, 0, 0, 3, 0, 1, 2, 1, 1, 0, 0, 2, 3, 0, 0, 1, 0, 0, 3, 0, 3, 0, 3, 2, 1, 2, 4, 1, 3, 2, 0, 1, 6, 5, 3, 1, 2, 1, 0, 3, 0, 2, 4, 2, 1, 0, 3, 2, 2, 4, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "6.0",
+        "data_mean": "1.1145833333333333",
+        "data_stddev": "1.3452833628603638",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/twitter/",
+      "company_name": "X (Twitter)",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/92682/logo-black_ZHyeLjT.png",
+      "svg_data": {
+        "data_values": "[0, 4, 4, 5, 1, 0, 0, 3, 0, 0, 0, 1, 2, 0, 1, 0, 1, 0, 3, 3, 1, 0, 2, 0, 1, 2, 0, 0, 1, 2, 2, 2, 0, 1, 4, 2, 1, 3, 3, 2, 1, 0, 2, 9, 5, 2, 0, 1, 2, 4, 3, 2, 2, 2, 7, 2, 7, 3, 250, 264, 6, 4, 4, 0, 1, 5, 3, 9, 3, 5, 0, 6, 2, 1, 1, 1, 4, 2, 10, 3, 1, 4, 2, 6, 1, 4, 5, 1, 1, 3, 0, 2, 2, 2, 1, 1]",
+        "data_min": "0.0",
+        "data_max": "264.0",
+        "data_mean": "7.614583333333333",
+        "data_stddev": "36.45355772294005",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/openai/",
+      "company_name": "OpenAI",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/8741e/OpenAI_Logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 1, 1, 1, 0, 0, 0, 0, 4, 0, 0, 3, 2, 5, 3, 7, 2, 0, 7, 5, 10, 9, 11, 16, 2, 6, 9, 9, 7, 5, 14, 6, 10, 8, 9, 1, 8, 9, 4, 7, 4, 14, 13, 12, 9, 6, 7, 4, 10, 6, 3, 11, 3, 1, 9, 8, 3, 6, 2, 1, 7, 1, 2, 2, 2, 3, 1, 2, 2, 1, 3, 2, 0, 1, 1, 2, 4, 1, 0, 1, 2, 0, 0, 2, 3, 0, 1]",
+        "data_min": "0.0",
+        "data_max": "16.0",
+        "data_mean": "4.010416666666667",
+        "data_stddev": "3.9567842363535006",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/roblox/",
+      "company_name": "Roblox",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/5251f/roblox-logo-black-png-transparent_Mdodjb7.png",
+      "svg_data": {
+        "data_values": "[1, 2, 1, 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0, 2, 1, 0, 1, 2, 4, 3, 0, 0, 7, 0, 2, 1, 2, 0, 0, 2, 1, 2, 0, 0, 9, 6, 4, 1, 4, 2, 5, 4, 13, 43, 0, 4, 2, 2, 3, 2, 5, 2, 4, 2, 8, 8, 0, 4, 1, 15, 37, 27, 14, 6, 2, 0, 12, 5, 0, 0, 0, 3, 2, 8, 1, 1, 3, 0, 1, 1, 1]",
+        "data_min": "0.0",
+        "data_max": "43.0",
+        "data_mean": "3.3541666666666665",
+        "data_stddev": "6.714380038808912",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/amazon-prime-instant-video/",
+      "company_name": "Amazon Prime Video",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/6dee8/Amazon_Prime_Video_logo.png",
+      "svg_data": {
+        "data_values": "[1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 4, 2, 0, 4, 0, 1, 2, 1, 2, 0, 2, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0]",
+        "data_min": "0.0",
+        "data_max": "4.0",
+        "data_mean": "0.4166666666666667",
+        "data_stddev": "0.8249579113843054",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/iti/",
+      "company_name": "ITI",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/2023f/ITI.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4]",
+        "data_min": "0.0",
+        "data_max": "4.0",
+        "data_mean": "0.14583333333333334",
+        "data_stddev": "0.5199993322645285",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/aws-amazon-web-services/",
+      "company_name": "Amazon Web Services",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/d42a6/aws-logo-icon-PNG-Transparent-Background_3.png",
+      "svg_data": {
+        "data_values": "[0, 0, 2, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 2, 1, 4, 6, 11, 8, 11, 3, 2, 7, 23, 26, 11, 12, 9, 10, 7, 2, 2, 3, 5, 7, 4, 10, 15, 3, 4, 9, 3, 2, 3, 3, 9, 6, 4, 1, 3, 8, 7, 5, 0, 2, 2, 1, 3, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 0, 2, 1, 1, 0, 2, 1, 0, 0, 0, 1, 1, 0, 0, 3]",
+        "data_min": "0.0",
+        "data_max": "26.0",
+        "data_mean": "3.2395833333333335",
+        "data_stddev": "4.611454921503142",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/brisanet/",
+      "company_name": "Brisanet",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/19daa/LOGO_NEGATIVO.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 3, 0, 1, 1, 0, 2, 2, 0, 6, 0, 0, 1, 0, 1, 2, 4, 2, 0, 2, 0, 0, 1, 1, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0]",
+        "data_min": "0.0",
+        "data_max": "6.0",
+        "data_mean": "0.4895833333333333",
+        "data_stddev": "0.9999457450559783",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/twitch/",
+      "company_name": "Twitch",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/b5103/Twitch.logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 2, 0, 0, 0, 1, 0, 0, 2, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 2, 1, 0]",
+        "data_min": "0.0",
+        "data_max": "2.0",
+        "data_mean": "0.25",
+        "data_stddev": "0.5400617248673217",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/icloud/",
+      "company_name": "iCloud",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/e8cfa/ICloud.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "3.0",
+        "data_mean": "0.08333333333333333",
+        "data_stddev": "0.3726779962499649",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/call-of-duty/",
+      "company_name": "Call of Duty",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/d4f9e/call_of_duty.png",
+      "svg_data": {
+        "data_values": "[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 75, 232, 19, 5, 11, 5, 8, 7, 2, 9, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]",
+        "data_min": "0.0",
+        "data_max": "232.0",
+        "data_mean": "4.041666666666667",
+        "data_stddev": "24.71374308400535",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/govbr/",
+      "company_name": "GOV.BR",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/ab201/download_4DHF7ln.png",
+      "svg_data": {
+        "data_values": "[0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 5, 2, 3, 2, 3, 7, 3, 9, 3, 3, 6, 9, 8, 3, 5, 4, 3, 0, 5, 3, 6, 5, 3, 3, 4, 4, 6, 2, 6, 6, 13, 2, 9, 4, 5, 2, 1, 2, 2, 5, 4, 2, 3, 6, 10, 1, 7, 8, 4, 7, 1, 3, 8, 0, 1, 4, 1, 2, 0, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "13.0",
+        "data_mean": "2.7604166666666665",
+        "data_stddev": "2.845847822071463",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/bradesco/",
+      "company_name": "Bradesco",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/8a268/bradesco_WUPYSON.png",
+      "svg_data": {
+        "data_values": "[2, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 3, 0, 0, 1, 0, 1, 0, 1, 1, 2, 5, 7, 7, 3, 2, 9, 2, 3, 0, 8, 1, 7, 5, 0, 3, 5, 3, 4, 9, 1, 1, 2, 2, 2, 1, 4, 2, 2, 2, 2, 7, 6, 2, 6, 2, 3, 4, 10, 0, 3, 5, 1, 1, 1, 7, 0, 13, 1, 0, 0, 3, 2, 3, 2, 3, 1, 0, 1, 0, 1, 1, 3, 0, 2, 4, 0, 1, 0, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "13.0",
+        "data_mean": "2.2916666666666665",
+        "data_stddev": "2.6256612923646916",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/discord/",
+      "company_name": "Discord",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/5d878/Discord_logo.png",
+      "svg_data": {
+        "data_values": "[0, 1, 1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 1, 1, 1, 0, 1, 3, 0, 0, 1, 0, 0, 1, 1, 1, 2, 0, 3, 2, 3, 2, 5, 1, 1, 4, 5, 1, 0, 2, 0, 3, 5, 8, 2, 5, 3, 6, 0, 0, 0, 2, 2, 0, 2, 4, 2, 1, 2, 8, 4, 12, 3, 10, 5, 6, 8, 4, 3, 2, 2, 3, 3, 0, 3, 0, 0, 2, 6, 2, 0, 2, 0]",
+        "data_min": "0.0",
+        "data_max": "12.0",
+        "data_mean": "1.9270833333333333",
+        "data_stddev": "2.394632851410745",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/banco-inter/",
+      "company_name": "Banco Inter",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/0765a/banco-inter.png",
+      "svg_data": {
+        "data_values": "[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 2, 0, 3, 2, 1, 3, 0, 2, 3, 1, 4, 5, 2, 1, 4, 3, 0, 2, 3, 1, 1, 1, 2, 1, 4, 4, 5, 1, 0, 2, 3, 7, 2, 1, 0, 3, 1, 3, 5, 2, 3, 2, 3, 4, 9, 2, 5, 4, 0, 5, 3, 0, 3, 1, 4, 0, 1, 0, 1, 1, 3, 0, 4, 1, 3, 0, 3, 1, 2, 2, 0, 0, 0, 0, 0, 1]",
+        "data_min": "0.0",
+        "data_max": "9.0",
+        "data_mean": "1.71875",
+        "data_stddev": "1.7952664901995283",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/alternativa-internet/",
+      "company_name": "Alternativa Internet",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/b63c6/alternativainternet.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 2, 1, 2, 0, 0, 1, 1, 1, 1, 1, 2, 1, 0, 2, 3, 1, 2, 1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 3, 3, 2, 1, 2, 2, 2, 4, 2, 4, 2, 6, 3, 6, 2, 4, 5, 7, 1, 3, 2, 4, 5, 4, 4, 1, 1, 2, 1, 2, 2, 2, 1, 0, 0, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "7.0",
+        "data_mean": "1.5",
+        "data_stddev": "1.541103500742244",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/talklink/",
+      "company_name": "Talklink",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/8df95/talklink-1.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 2, 1, 2, 0, 0, 1, 1, 1, 1, 1, 2, 1, 0, 2, 2, 1, 1, 1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 3, 3, 2, 1, 2, 2, 2, 4, 2, 4, 2, 6, 3, 6, 2, 4, 5, 7, 1, 3, 2, 4, 5, 4, 4, 1, 1, 2, 1, 4, 2, 2, 1, 0, 0, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "7.0",
+        "data_mean": "1.5",
+        "data_stddev": "1.5545631755148024",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/prolink/",
+      "company_name": "Prolink",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/9033f/Prolink_logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 2, 1, 2, 0, 0, 1, 1, 1, 1, 1, 2, 1, 0, 2, 2, 1, 1, 1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 3, 3, 2, 1, 2, 2, 2, 4, 2, 4, 2, 6, 3, 6, 2, 4, 5, 7, 1, 3, 2, 4, 5, 4, 4, 1, 1, 2, 1, 2, 2, 2, 1, 0, 0, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "7.0",
+        "data_mean": "1.4791666666666667",
+        "data_stddev": "1.5341879411887218",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/github/",
+      "company_name": "GitHub",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/14b9a/github-mark_aqGj2dg.png",
+      "svg_data": {
+        "data_values": "[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 0, 1, 0, 0, 1, 1, 2, 3, 6, 1, 3, 2, 5, 5, 3, 2, 2, 1, 12, 5, 1, 1, 2, 2, 0, 0, 1, 0, 2, 2, 0, 2, 1, 1, 2, 1, 1, 0, 1, 1, 2, 0, 1, 0, 1, 0, 0, 2, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1]",
+        "data_min": "0.0",
+        "data_max": "12.0",
+        "data_mean": "1.0104166666666667",
+        "data_stddev": "1.7290097820396764",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/xbox-live/",
+      "company_name": "Xbox Network (Xbox Live)",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/783e5/Xbox_live_xz5Pi4r.png",
+      "svg_data": {
+        "data_values": "[0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 2, 0, 0, 0, 0, 1, 0, 1, 4, 0, 2, 4, 0, 1, 2, 0, 0, 1, 0, 2, 2, 0, 0, 1, 1, 2, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 4, 1, 0, 0, 2, 1, 1, 0, 1, 0, 2, 1, 0, 0, 1, 2, 2, 1, 4, 0, 2, 4, 1, 2, 0, 0, 0, 0, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "4.0",
+        "data_mean": "0.7291666666666666",
+        "data_stddev": "1.0456175076108003",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/league-of-legends/",
+      "company_name": "League of Legends",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/31ac0/image1.png",
+      "svg_data": {
+        "data_values": "[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 2, 0, 3, 0, 0, 4, 2, 0, 0, 0, 2, 1, 0, 0, 0, 2, 0, 3, 0, 0, 0, 2, 0, 0, 7, 3, 0, 1, 0, 5, 2, 1, 5, 0, 2, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "7.0",
+        "data_mean": "0.65625",
+        "data_stddev": "1.273349626313737",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/fortnite/",
+      "company_name": "Fortnite",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/c0997/FortniteLogo3.png",
+      "svg_data": {
+        "data_values": "[2, 0, 0, 1, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 4, 1, 5, 1, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 0, 2, 0, 0, 0, 1, 0, 3, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 2, 0, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "5.0",
+        "data_mean": "0.4895833333333333",
+        "data_stddev": "0.9353563454938206",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/crunchyroll/",
+      "company_name": "Crunchyroll",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/63df3/crunchyroll_1.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 2, 3, 2, 0, 0, 0, 0, 0, 3, 0, 0, 1, 3, 2, 0, 0, 0, 1, 1, 0]",
+        "data_min": "0.0",
+        "data_max": "5.0",
+        "data_mean": "0.3020833333333333",
+        "data_stddev": "0.8180234265526195",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/universidadepaulista/",
+      "company_name": "Universidade Paulista",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/ebc11/download_7_u6zOT0N.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]",
+        "data_min": "0.0",
+        "data_max": "3.0",
+        "data_mean": "0.0625",
+        "data_stddev": "0.37673211083385677",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/aipinternet/",
+      "company_name": "AIP Internet",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/7f91f/download_PhPKCg8.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "2.0",
+        "data_mean": "0.041666666666666664",
+        "data_stddev": "0.2856522750167102",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/pinterest/",
+      "company_name": "Pinterest",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/f49e6/pinterest_logo_1.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0]",
+        "data_min": "0.0",
+        "data_max": "2.0",
+        "data_mean": "0.041666666666666664",
+        "data_stddev": "0.24650332429581734",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/paypal/",
+      "company_name": "Paypal",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/94583/paypal-logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1]",
+        "data_min": "0.0",
+        "data_max": "1.0",
+        "data_mean": "0.03125",
+        "data_stddev": "0.17399263633843817",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/genesysnet-fibra/",
+      "company_name": "Genesysnet Fibra",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/fa844/download-2_pcwKpHj.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0]",
+        "data_min": "0.0",
+        "data_max": "2.0",
+        "data_mean": "0.020833333333333332",
+        "data_stddev": "0.2030582155168534",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/banco-do-brasil/",
+      "company_name": "Banco do Brasil",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/2be6b/banco-do-brasil-logo.png",
+      "svg_data": {
+        "data_values": "[0, 0, 3, 0, 0, 1, 1, 1, 6, 2, 6, 3, 12, 13, 25, 28, 60, 57, 105, 124, 167, 204, 264, 311, 47, 8, 6, 15, 8, 3, 4, 6, 7, 3, 4, 8, 2, 8, 1, 5, 7, 5, 2, 7, 1, 4, 5, 3, 6, 3, 6, 3, 2, 3, 1, 10, 2, 7, 5, 1, 4, 3, 3, 5, 8, 0, 2, 5, 4, 4, 1, 3, 1, 4, 1, 1, 0, 1, 0, 4, 2, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "311.0",
+        "data_mean": "17.4375",
+        "data_stddev": "50.559538438195155",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/santander/",
+      "company_name": "Santander Brazil",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/f5caa/santander.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 1, 2, 1, 1, 3, 3, 6, 1, 1, 5, 11, 4, 15, 10, 9, 14, 5, 6, 19, 17, 14, 13, 16, 2, 6, 5, 5, 7, 5, 2, 2, 4, 0, 3, 8, 7, 12, 12, 12, 14, 9, 10, 5, 5, 8, 8, 0, 4, 6, 0, 4, 6, 5, 2, 1, 4, 2, 7, 4, 4, 5, 3, 1, 7, 5, 1, 0, 1, 1, 5, 2, 3, 0, 0, 1, 0, 0, 1, 0]",
+        "data_min": "0.0",
+        "data_max": "19.0",
+        "data_mean": "4.354166666666667",
+        "data_stddev": "4.600677410869935",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/cifra-club/",
+      "company_name": "Cifra Club",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/cee34/download_5RrGOyu.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 10, 10, 17, 10, 10, 4, 5, 5, 13, 12, 12, 11, 6, 15, 11, 18, 14, 24, 16, 16, 17, 26, 18, 9, 30, 23, 21, 3, 0, 0, 4, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0]",
+        "data_min": "0.0",
+        "data_max": "30.0",
+        "data_mean": "4.166666666666667",
+        "data_stddev": "7.181670341145497",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/caixa/",
+      "company_name": "Caixa Econômica Federal",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/c7228/Caixa_Economica_Federal.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 5, 2, 5, 1, 4, 7, 0, 0, 2, 7, 7, 3, 1, 8, 7, 8, 3, 3, 1, 9, 7, 5, 7, 1, 4, 4, 6, 6, 2, 2, 5, 5, 4, 7, 6, 5, 7, 7, 4, 5, 3, 2, 3, 3, 8, 2, 5, 3, 3, 4, 4, 3, 3, 4, 4, 4, 1, 2, 0, 0, 2, 3, 3, 2, 0, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 1]",
+        "data_min": "0.0",
+        "data_max": "9.0",
+        "data_mean": "2.8125",
+        "data_stddev": "2.530285309999645",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/enel/",
+      "company_name": "Enel",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/1e388/download_3_RM7K5xE.png",
+      "svg_data": {
+        "data_values": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0, 1, 0, 0, 0, 4, 1, 1, 0, 0, 0, 6, 1, 5, 3, 0, 2, 2, 3, 6, 3, 3, 2, 1, 5, 5, 5, 3, 4, 6, 3, 4, 1, 3, 1, 0, 1, 3, 1, 6, 5, 1, 7, 0, 3, 3, 1, 1, 3, 2, 0, 0, 0, 0, 0, 2, 2, 2, 0, 1, 0]",
+        "data_min": "0.0",
+        "data_max": "7.0",
+        "data_mean": "1.375",
+        "data_stddev": "1.8554536731843598",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    },
+    {
+      "full_company_link": "https://downdetector.com.br/fora-do-ar/facebook/",
+      "company_name": "Facebook",
+      "logo_url": "https://cdn2.downdetector.com/static/uploads/c/200x100/e9e69/FB-f-Logo__blue_512.png",
+      "svg_data": {
+        "data_values": "[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 2, 3, 1, 0, 0, 0, 0, 0, 1, 4, 3, 0, 1, 2, 1, 0, 3, 2, 8, 0, 1, 0, 1, 2, 1, 6, 2, 0, 3, 2, 3, 0, 1, 1, 3, 4, 2, 3, 1, 2, 2, 1, 2, 1, 0, 3, 1, 0, 0, 4, 3, 4, 0, 1, 3, 1, 2, 3, 1, 1, 2, 1, 3, 2, 0, 1, 2, 7, 2, 5, 0, 0, 0, 0, 1, 0, 0]",
+        "data_min": "0.0",
+        "data_max": "8.0",
+        "data_mean": "1.3645833333333333",
+        "data_stddev": "1.614516127633567",
+        "last_status": "success",
+        "sparkline_color": "rgb(22, 160, 176)",
+        "sparkline_color_hex": "#16a0b0"
+      }
+    }
+  ]
+}
