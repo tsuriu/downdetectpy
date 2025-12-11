@@ -6,6 +6,7 @@ A **FastAPI-based web scraper** that extracts outage and service status data fro
 
 ## 🌟 Features
 
+- **Intelligent caching system** - Limits requests to once every 10 minutes
 - **Real-time scraping** of Downdetector status pages
 - **Time series data** for service outages and performance trends
 - **Problem statistics** and detailed outage reports
@@ -106,9 +107,27 @@ curl "http://localhost:8089/api/companylist"
 
 ---
 
+## 🗄️ Cache Management Endpoints
+
+The API includes an intelligent caching system that limits requests to Downdetector servers to once every 10 minutes. Subsequent requests return cached data.
+
+### 📊 Cache Information
+**GET** `/api/cache/info`
+Returns detailed information about cached data including file sizes, expiration times, and cache statistics.
+
+### 🗑️ Clear All Cache
+**DELETE** `/api/cache/clear`
+Clears all cached data, forcing the next request to fetch fresh data from Downdetector.
+
+### ⏰ Clear Expired Cache
+**DELETE** `/api/cache/clear/expired`
+Clears only cache entries that have expired, keeping valid cached data.
+
+---
+
 ## 📥 Example Responses
 
-### ✅ Service Status Response
+### ✅ Service Status Response (with cache metadata)
 ```json
 {
   "time_series": [
@@ -138,11 +157,20 @@ curl "http://localhost:8089/api/companylist"
     "spikes": ["2023-10-15 15:30:00"],
     "alerts_count": 8
   },
-  "duration_seconds": 3.456
+  "duration_seconds": 3.456,
+  "company": "Claro",
+  "domain": "com.br",
+  "timezone": "America/Maceio",
+  "cache_timestamp": "2023-12-11T10:30:00",
+  "cache_expires_at": "2023-12-11T10:40:00",
+  "from_cache": false,
+  "cache_hit": false
 }
 ```
 
-### 🧾 Company List Response
+---
+
+### 🧾 Company List Response (with cache metadata)
 ```json
 {
   "duration_seconds": 5.123,
@@ -162,7 +190,12 @@ curl "http://localhost:8089/api/companylist"
         "sparkline_color_hex": "#16a0b0"
       }
     }
-  ]
+  ],
+  "domain": "com.br",
+  "cache_timestamp": "2023-12-11T10:30:00",
+  "cache_expires_at": "2023-12-11T10:40:00",
+  "from_cache": true,
+  "cache_hit": true
 }
 ```
 
@@ -170,32 +203,41 @@ curl "http://localhost:8089/api/companylist"
 
 ## 🏗️ Architecture
 
+### Caching System Flow:
 ```
-┌─────────────────┐     ┌──────────────┐     ┌─────────────────┐
-│   Dashboard     │────▶│    Nginx     │────▶│   FastAPI       │
-│   (Port 8089)   │     │  (Reverse    │     │   (Port 8000)   │
-│                 │     │    Proxy)    │     │                 │
-└─────────────────┘     └──────────────┘     └─────────┬───────┘
-                                                        │
-                                                ┌───────▼───────┐
-                                                │   Playwright  │
-                                                │   Scraper     │
-                                                └───────────────┘
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Client    │────▶│   FastAPI   │────▶│   Cache     │────▶│  Downdetector│
+│   Request   │     │   Endpoint  │     │   Layer     │     │   Scraper    │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+                        │                    │                    │
+                        │   Cache Hit?       │   Cache Miss/Expired
+                        │◀───────────────────│───────────────────▶│
+                        │                    │                    │
+                        │   Return Cached    │   Fetch New Data   │
+                        │   Data (Instant)   │   (10+ seconds)    │
+                        └───────────────────▶│◀───────────────────┘
 ```
 
 ### Docker Services:
-- **`downdetector`**: FastAPI + Playwright scraper
-- **`nginx`**: Reverse proxy with caching and static file serving
+- **`downdetector`**: FastAPI + Playwright scraper with caching layer
+- **`nginx`**: Reverse proxy with additional caching and static file serving
 - **Shared Network**: `app-network` for inter-container communication
+- **Cache Directory**: `./cache` for persistent cache storage
 
 ---
 
 ## ⚙️ Configuration
 
+### Cache Settings:
+- **Cache Duration:** 10 minutes (600 seconds)
+- **Cache Directory:** `./cache` (auto-created)
+- **Cache File Format:** JSON with metadata
+- **Auto-expiration:** Yes (based on timestamp)
+
 ### Nginx Settings (`nginx.conf`):
 - **Port:** 80 (mapped to host port 8089)
 - **Static file caching:** 1 year for assets
-- **API response caching:** 10 seconds for 200/302 responses
+- **API response caching:** 10 seconds for 200/302 responses (additional layer)
 - **CORS headers:** Enabled for all origins
 - **Gzip compression:** Enabled for text-based content
 
@@ -204,11 +246,13 @@ Modify `docker-compose.yml` to:
   - Change exposed ports
   - Adjust resource limits (CPU/memory)
   - Enable production deployment settings
+  - Modify cache duration by setting environment variables
 
 ### Dashboard Customization:
 - Modify `index.html` for UI changes
 - Update Tailwind config in `<script>` section for theme colors
 - Adjust grid columns in `companiesGrid` CSS classes
+- Change auto-refresh interval in JavaScript (default: 10 minutes)
 
 ---
 
@@ -226,13 +270,23 @@ Modify `docker-compose.yml` to:
    - Check browser console for errors
    - Verify API is accessible: `curl http://localhost:8089/api/companylist`
    - Ensure containers are running: `docker ps`
+   - Check cache files: `ls -la ./cache/`
 
-3. **Slow API responses:**
-   - Responses are cached for 10 seconds
-   - Check `duration_seconds` in response for scraping time
-   - Consider increasing `proxy_cache_valid` in nginx.conf
+3. **Getting stale data:**
+   - Cache automatically expires after 10 minutes
+   - Manually clear cache: `curl -X DELETE http://localhost:8089/api/cache/clear`
+   - Or clear only expired: `curl -X DELETE http://localhost:8089/api/cache/clear/expired`
 
-4. **Missing company logos:**
+4. **Cache not working:**
+   - Ensure the `./cache` directory exists and is writable
+   - Check permissions: `chmod 755 ./cache`
+   - Verify cache info: `curl http://localhost:8089/api/cache/info`
+
+5. **Slow first request, fast subsequent requests:**
+   - This is expected behavior - first request scrapes Downdetector (slow)
+   - Subsequent requests use cache (fast) until cache expires
+
+6. **Missing company logos:**
    - Some companies may not have logos on Downdetector
    - Fallback displays company name in text
 
@@ -266,7 +320,7 @@ For issues, feature requests, or questions:
 
 ---
 
-**Note**: This tool is for monitoring purposes only. Respect Downdetector's terms of service and implement appropriate rate limiting in production environments.
+**Note**: This tool is for monitoring purposes only. The built-in caching system helps respect Downdetector's servers by limiting requests to once every 10 minutes per endpoint. Implement additional rate limiting in production environments if needed.
 
 ---
 

@@ -6,6 +6,7 @@ Um **web scraper baseado em FastAPI** que extrai dados de status e interrupçõe
 
 ## 🌟 Funcionalidades
 
+- **Sistema de cache inteligente** - Limita requisições a uma vez a cada 10 minutos
 - **Scraping em tempo real** das páginas de status do Downdetector
 - **Dados de séries temporais** para interrupções de serviços e tendências de performance
 - **Estatísticas de problemas** e relatórios detalhados de interrupções
@@ -106,9 +107,27 @@ curl "http://localhost:8089/api/companylist"
 
 ---
 
+## 🗄️ Endpoints de Gerenciamento de Cache
+
+A API inclui um sistema de cache inteligente que limita as requisições aos servidores do Downdetector para uma vez a cada 10 minutos. Requisições subsequentes retornam dados cacheados.
+
+### 📊 Informações do Cache
+**GET** `/api/cache/info`
+Retorna informações detalhadas sobre os dados cacheados incluindo tamanhos de arquivos, tempos de expiração e estatísticas do cache.
+
+### 🗑️ Limpar Todo o Cache
+**DELETE** `/api/cache/clear`
+Limpa todos os dados cacheados, forçando a próxima requisição a buscar dados novos do Downdetector.
+
+### ⏰ Limpar Cache Expirado
+**DELETE** `/api/cache/clear/expired`
+Limpa apenas as entradas de cache que expiraram, mantendo dados cacheados válidos.
+
+---
+
 ## 📥 Exemplos de Respostas
 
-### ✅ Resposta de Status do Serviço
+### ✅ Resposta de Status do Serviço (com metadados de cache)
 ```json
 {
   "time_series": [
@@ -138,11 +157,20 @@ curl "http://localhost:8089/api/companylist"
     "spikes": ["2023-10-15 15:30:00"],
     "alerts_count": 8
   },
-  "duration_seconds": 3.456
+  "duration_seconds": 3.456,
+  "company": "Claro",
+  "domain": "com.br",
+  "timezone": "America/Maceio",
+  "cache_timestamp": "2023-12-11T10:30:00",
+  "cache_expires_at": "2023-12-11T10:40:00",
+  "from_cache": false,
+  "cache_hit": false
 }
 ```
 
-### 🧾 Resposta da Lista de Empresas
+---
+
+### 🧾 Resposta da Lista de Empresas (com metadados de cache)
 ```json
 {
   "duration_seconds": 5.123,
@@ -162,7 +190,12 @@ curl "http://localhost:8089/api/companylist"
         "sparkline_color_hex": "#16a0b0"
       }
     }
-  ]
+  ],
+  "domain": "com.br",
+  "cache_timestamp": "2023-12-11T10:30:00",
+  "cache_expires_at": "2023-12-11T10:40:00",
+  "from_cache": true,
+  "cache_hit": true
 }
 ```
 
@@ -170,32 +203,41 @@ curl "http://localhost:8089/api/companylist"
 
 ## 🏗️ Arquitetura
 
+### Fluxo do Sistema de Cache:
 ```
-┌─────────────────┐     ┌──────────────┐     ┌─────────────────┐
-│   Dashboard     │────▶│    Nginx     │────▶│   FastAPI       │
-│   (Porta 8089)  │     │  (Proxy      │     │   (Porta 8000)  │
-│                 │     │   Reverso)   │     │                 │
-└─────────────────┘     └──────────────┘     └─────────┬───────┘
-                                                        │
-                                                ┌───────▼───────┐
-                                                │   Playwright  │
-                                                │   Scraper     │
-                                                └───────────────┘
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Cliente   │────▶│   FastAPI   │────▶│   Camada    │────▶│  Downdetector│
+│   Requisição│     │   Endpoint  │     │   de Cache  │     │   Scraper    │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+                        │                    │                    │
+                        │   Cache Hit?       │   Cache Miss/Expired
+                        │◀───────────────────│───────────────────▶│
+                        │                    │                    │
+                        │   Retorna Dados    │   Busca Dados      │
+                        │   Cache (Instant)  │   Novos (10+ seg)  │
+                        └───────────────────▶│◀───────────────────┘
 ```
 
 ### Serviços Docker:
-- **`downdetector`**: FastAPI + Scraper Playwright
-- **`nginx`**: Proxy reverso com cache e serviço de arquivos estáticos
+- **`downdetector`**: FastAPI + Scraper Playwright com camada de cache
+- **`nginx`**: Proxy reverso com cache adicional e serviço de arquivos estáticos
 - **Rede Compartilhada**: `app-network` para comunicação entre containers
+- **Diretório de Cache**: `./cache` para armazenamento persistente de cache
 
 ---
 
 ## ⚙️ Configuração
 
+### Configurações de Cache:
+- **Duração do Cache:** 10 minutos (600 segundos)
+- **Diretório de Cache:** `./cache` (criado automaticamente)
+- **Formato do Arquivo de Cache:** JSON com metadados
+- **Auto-expiração:** Sim (baseado em timestamp)
+
 ### Configurações Nginx (`nginx.conf`):
 - **Porta:** 80 (mapeada para porta do host 8089)
 - **Cache de arquivos estáticos:** 1 ano para assets
-- **Cache de respostas da API:** 10 segundos para respostas 200/302
+- **Cache de respostas da API:** 10 segundos para respostas 200/302 (camada adicional)
 - **Cabeçalhos CORS:** Habilitados para todas as origens
 - **Compressão Gzip:** Habilitada para conteúdo baseado em texto
 
@@ -204,11 +246,13 @@ Modifique `docker-compose.yml` para:
   - Alterar portas expostas
   - Ajustar limites de recursos (CPU/memória)
   - Habilitar configurações de produção
+  - Modificar duração do cache definindo variáveis de ambiente
 
 ### Personalização do Dashboard:
 - Modifique `index.html` para alterações na interface
 - Atualize a configuração do Tailwind na seção `<script>` para cores do tema
 - Ajuste colunas do grid nas classes CSS de `companiesGrid`
+- Altere intervalo de auto-atualização no JavaScript (padrão: 10 minutos)
 
 ---
 
@@ -226,13 +270,23 @@ Modifique `docker-compose.yml` para:
    - Verifique console do navegador por erros
    - Verifique se API está acessível: `curl http://localhost:8089/api/companylist`
    - Certifique-se que containers estão rodando: `docker ps`
+   - Verifique arquivos de cache: `ls -la ./cache/`
 
-3. **Respostas da API lentas:**
-   - Respostas são cacheadas por 10 segundos
-   - Verifique `duration_seconds` na resposta para tempo de scraping
-   - Considere aumentar `proxy_cache_valid` no nginx.conf
+3. **Obtendo dados desatualizados:**
+   - Cache expira automaticamente após 10 minutos
+   - Limpe manualmente o cache: `curl -X DELETE http://localhost:8089/api/cache/clear`
+   - Ou limpe apenas o expirado: `curl -X DELETE http://localhost:8089/api/cache/clear/expired`
 
-4. **Logos de empresas faltando:**
+4. **Cache não funcionando:**
+   - Certifique-se que o diretório `./cache` existe e tem permissão de escrita
+   - Verifique permissões: `chmod 755 ./cache`
+   - Verifique informações do cache: `curl http://localhost:8089/api/cache/info`
+
+5. **Primeira requisição lenta, requisições subsequentes rápidas:**
+   - Comportamento esperado - primeira requisição faz scraping do Downdetector (lento)
+   - Requisições subsequentes usam cache (rápido) até o cache expirar
+
+6. **Logos de empresas faltando:**
    - Algumas empresas podem não ter logos no Downdetector
    - Fallback exibe nome da empresa em texto
 
@@ -266,7 +320,7 @@ Para problemas, solicitações de funcionalidades ou perguntas:
 
 ---
 
-**Nota**: Esta ferramenta é apenas para fins de monitoramento. Respeite os termos de serviço do Downdetector e implemente limitação de taxa apropriada em ambientes de produção.
+**Nota**: Esta ferramenta é apenas para fins de monitoramento. O sistema de cache embutido ajuda a respeitar os servidores do Downdetector limitando as requisições a uma vez a cada 10 minutos por endpoint. Implemente limitação de taxa adicional em ambientes de produção se necessário.
 
 ---
 
