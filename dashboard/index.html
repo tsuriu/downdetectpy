@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Company Status Dashboard</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#EF4444",
+                            "background-light": "#FFFFFF",
+                            "background-dark": "#1A1A1A", // Graphite dark background
+                            "card-dark": "#2D2D2D", // Graphite card background
+                            "status-ok": "#10B981", // Emerald green
+                            "status-warn": "#F59E0B", // Amber
+                            "status-down": "#EF4444", // Red
+                            "status-neutral": "#6B7280", // Gray
+                        },
+                        fontFamily: {
+                            display: ["Inter", "sans-serif"],
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.5rem",
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            ::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 4px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+            .loading-spinner {
+                border: 3px solid #f3f3f3;
+                border-top: 3px solid #6B7280; // Gray instead of blue
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            .nav-hidden {
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+            }
+            .nav-visible {
+                transform: translateY(0);
+                transition: transform 0.3s ease;
+            }
+            /* Theme toggle switch */
+            .theme-toggle {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+            }
+            .theme-toggle input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            .theme-slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #E5E7EB; // Light mode gray
+                transition: .4s;
+                border-radius: 34px;
+            }
+            .theme-slider:before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+            }
+            .dark .theme-slider {
+                background-color: #4B5563; // Dark mode gray
+            }
+            input:checked + .theme-slider:before {
+                transform: translateX(30px);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col transition-colors duration-200"
+    >
+        <nav
+            id="navSection"
+            class="bg-white dark:bg-card-dark border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40 nav-visible"
+        >
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <span class="material-icons text-primary mr-2"
+                            >analytics</span
+                        >
+                        <h1
+                            class="text-xl font-bold text-gray-900 dark:text-gray-100"
+                        >
+                            StatusMonitor
+                        </h1>
+                        <div
+                            class="hidden md:flex ml-8 text-sm text-gray-500 dark:text-gray-400 space-x-2 items-center"
+                        >
+                            <span
+                                class="hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer"
+                                >Home</span
+                            >
+                            <span class="material-icons text-xs"
+                                >chevron_right</span
+                            >
+                            <span
+                                class="hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer"
+                                >Dashboards</span
+                            >
+                            <span class="material-icons text-xs"
+                                >chevron_right</span
+                            >
+                            <span
+                                class="text-gray-900 dark:text-gray-100 font-medium"
+                                >Downdetector Events</span
+                            >
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <!-- Theme Toggle -->
+                        <div class="flex items-center space-x-2">
+                            <span
+                                class="material-icons text-gray-600 dark:text-gray-300 text-sm"
+                            >
+                                light_mode
+                            </span>
+                            <label class="theme-toggle">
+                                <input type="checkbox" id="themeToggle" />
+                                <span class="theme-slider"></span>
+                            </label>
+                            <span
+                                class="material-icons text-gray-600 dark:text-gray-300 text-sm"
+                            >
+                                dark_mode
+                            </span>
+                        </div>
+
+                        <div class="relative hidden md:block">
+                            <span
+                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                            >
+                                <span
+                                    class="material-icons text-gray-400 text-sm"
+                                    >search</span
+                                >
+                            </span>
+                            <input
+                                id="searchInput"
+                                class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md pl-10 pr-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary text-sm border-none w-64"
+                                placeholder="Search companies..."
+                                type="text"
+                            />
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div
+                                class="flex items-center bg-gray-100 dark:bg-gray-700 rounded-md px-3 py-1.5 space-x-2"
+                            >
+                                <span class="material-icons text-sm"
+                                    >schedule</span
+                                >
+                                <span class="text-sm font-medium"
+                                    >Refresh in:
+                                    <span
+                                        id="refreshCountdown"
+                                        class="font-bold"
+                                        >10:00</span
+                                    ></span
+                                >
+                            </div>
+                            <button
+                                id="refreshBtn"
+                                class="p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
+                                title="Refresh now"
+                            >
+                                <span class="material-icons text-sm"
+                                    >refresh</span
+                                >
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="flex-grow p-4 md:p-6 lg:p-8">
+            <div class="max-w-[1600px] mx-auto">
+                <div
+                    id="headerSection"
+                    class="mb-6 flex justify-between items-center"
+                >
+                    <h2
+                        class="text-2xl font-semibold text-gray-800 dark:text-gray-100"
+                    >
+                        Service Status Overview
+                    </h2>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex space-x-4 text-sm">
+                            <div class="flex items-center">
+                                <span
+                                    class="w-3 h-3 rounded-full bg-status-warn mr-2"
+                                ></span>
+                                <span class="text-gray-600 dark:text-gray-300"
+                                    >Issues (<span id="warnCount">0</span
+                                    >)</span
+                                >
+                            </div>
+                            <div class="flex items-center">
+                                <span
+                                    class="w-3 h-3 rounded-full bg-status-down mr-2"
+                                ></span>
+                                <span class="text-gray-600 dark:text-gray-300"
+                                    >Outages (<span id="downCount">0</span
+                                    >)</span
+                                >
+                            </div>
+                        </div>
+                        <button
+                            id="toggleNavBtn"
+                            class="p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
+                            title="Toggle navigation bar"
+                        >
+                            <span class="material-icons text-sm">menu</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    id="loadingState"
+                    class="flex justify-center items-center py-20"
+                >
+                    <div class="loading-spinner"></div>
+                </div>
+
+                <div
+                    id="errorState"
+                    class="hidden bg-red-100 dark:bg-red-900/20 border border-red-400 dark:border-red-700/30 text-red-700 dark:text-red-400 px-4 py-3 rounded"
+                >
+                    <p class="font-bold">Error loading data</p>
+                    <p class="text-sm" id="errorMessage"></p>
+                </div>
+
+                <div
+                    id="companiesGrid"
+                    class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-3 max-w-[1600px] mx-auto"
+                >
+                    <!-- Companies will be dynamically inserted here -->
+                </div>
+            </div>
+        </main>
+        <footer
+            id="footerSection"
+            class="bg-white dark:bg-card-dark border-t border-gray-200 dark:border-gray-700 py-4 mt-auto"
+        >
+            <div
+                class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500 dark:text-gray-400"
+            >
+                © 2023 StatusMonitor Dashboard.
+                <span id="statusSummary">Loading...</span>
+            </div>
+        </footer>
+        <script>
+            // Changed from localhost:8000 to downdetector:8000 for Docker container communication
+            const API_BASE_URL = "/api"; // Will be proxied through Nginx
+            let allCompanies = [];
+            let filteredCompanies = [];
+            let countdownInterval;
+            let refreshInterval;
+            let secondsUntilRefresh = 600; // 10 minutes in seconds
+            let isNavVisible = true; // Track navbar visibility
+            let isRefreshing = false; // Track if a refresh is in progress
+
+            // Initialize theme - Light mode is default
+            function initTheme() {
+                const themeToggle = document.getElementById("themeToggle");
+
+                // Check localStorage for saved theme preference
+                const savedTheme = localStorage.getItem("theme");
+
+                if (savedTheme === "dark") {
+                    document.documentElement.classList.add("dark");
+                    themeToggle.checked = true;
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    themeToggle.checked = false;
+                    localStorage.setItem("theme", "light");
+                }
+
+                // Update toggle switch state
+                updateThemeToggleState();
+            }
+
+            // Toggle theme function
+            function toggleTheme() {
+                const themeToggle = document.getElementById("themeToggle");
+
+                if (themeToggle.checked) {
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("theme", "dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("theme", "light");
+                }
+
+                updateThemeToggleState();
+            }
+
+            // Update toggle UI state
+            function updateThemeToggleState() {
+                const themeToggle = document.getElementById("themeToggle");
+                const isDark =
+                    document.documentElement.classList.contains("dark");
+
+                // Update floating theme button icon
+                const floatingThemeBtn = document.querySelector(
+                    ".floating-theme-btn",
+                );
+                if (floatingThemeBtn) {
+                    floatingThemeBtn.innerHTML = isDark
+                        ? '<span class="material-icons">light_mode</span>'
+                        : '<span class="material-icons">dark_mode</span>';
+                }
+            }
+
+            function updateAllCountdowns() {
+                const minutes = Math.floor(secondsUntilRefresh / 60);
+                const seconds = secondsUntilRefresh % 60;
+                const timeString = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+                // Update navbar countdown
+                const navbarCountdown =
+                    document.getElementById("refreshCountdown");
+                if (navbarCountdown) {
+                    navbarCountdown.textContent = timeString;
+                }
+
+                // Update floating badge countdown
+                const floatingCountdown = document.getElementById(
+                    "floatingRefreshCountdown",
+                );
+                if (floatingCountdown) {
+                    floatingCountdown.textContent = timeString;
+                }
+
+                secondsUntilRefresh--;
+
+                if (secondsUntilRefresh < 0) {
+                    secondsUntilRefresh = 600; // Reset to 10 minutes
+                    // Only trigger auto-refresh if not already refreshing
+                    if (!isRefreshing) {
+                        loadCompanies();
+                    }
+                }
+            }
+
+            function startCountdown() {
+                // Clear existing intervals if any
+                if (countdownInterval) clearInterval(countdownInterval);
+                if (refreshInterval) clearInterval(refreshInterval);
+
+                // Reset countdown to 10 minutes
+                secondsUntilRefresh = 600;
+                updateAllCountdowns(); // Update both countdowns immediately
+
+                // Update countdown every second
+                countdownInterval = setInterval(updateAllCountdowns, 1000);
+
+                // Auto-refresh every 10 minutes (600000 milliseconds)
+                refreshInterval = setInterval(() => {
+                    if (!isRefreshing) {
+                        console.log("Auto-refreshing data...");
+                        loadCompanies();
+                    }
+                }, 600000);
+            }
+
+            function toggleNavbar() {
+                const navSection = document.getElementById("navSection");
+                const toggleBtn = document.getElementById("toggleNavBtn");
+
+                if (isNavVisible) {
+                    navSection.classList.remove("nav-visible");
+                    navSection.classList.add("nav-hidden");
+                    toggleBtn.innerHTML =
+                        '<span class="material-icons text-sm">menu_open</span>';
+                    toggleBtn.title = "Show navigation bar";
+                } else {
+                    navSection.classList.remove("nav-hidden");
+                    navSection.classList.add("nav-visible");
+                    toggleBtn.innerHTML =
+                        '<span class="material-icons text-sm">menu</span>';
+                    toggleBtn.title = "Hide navigation bar";
+                }
+
+                isNavVisible = !isNavVisible;
+                localStorage.setItem("navVisible", isNavVisible);
+            }
+
+            function getStatusColor(lastStatus) {
+                switch (lastStatus) {
+                    case "success":
+                        return "bg-status-ok";
+                    case "warning":
+                        return "bg-status-warn";
+                    case "danger":
+                        return "bg-status-down";
+                    default:
+                        return "bg-status-neutral";
+                }
+            }
+
+            function createCompanyCard(company) {
+                const statusColor = getStatusColor(
+                    company.svg_data.last_status,
+                );
+
+                const card = document.createElement("div");
+                card.className = `group relative aspect-[4/3] ${statusColor} rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer overflow-hidden flex items-center justify-center p-6`;
+                card.onclick = () =>
+                    window.open(company.full_company_link, "_blank");
+
+                card.innerHTML = `
+                    <div class="bg-white rounded px-4 py-2 shadow-sm w-full h-12 flex items-center justify-center">
+                        ${
+                            company.logo_url
+                                ? `<img src="${company.logo_url}" alt="${company.company_name}" class="max-h-full max-w-full object-contain" />`
+                                : `<span class="font-bold text-gray-900 dark:text-gray-100 text-sm text-center">${company.company_name}</span>`
+                        }
+                    </div>
+                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="absolute top-2 right-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-full px-2 py-1 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        ${Math.round(company.svg_data.data_mean)} avg
+                    </div>
+                `;
+
+                return card;
+            }
+
+            function sortCompanies(companies) {
+                // Define the sorting order: danger -> warning -> success -> others
+                const statusOrder = {
+                    danger: 1,
+                    warning: 2,
+                    success: 3,
+                };
+
+                return [...companies].sort((a, b) => {
+                    const statusA = a.svg_data.last_status || "other";
+                    const statusB = b.svg_data.last_status || "other";
+
+                    const orderA = statusOrder[statusA] || 4;
+                    const orderB = statusOrder[statusB] || 4;
+
+                    // First sort by status order
+                    if (orderA !== orderB) {
+                        return orderA - orderB;
+                    }
+
+                    // If same status, sort alphabetically by company name
+                    return a.company_name.localeCompare(b.company_name);
+                });
+            }
+
+            function updateStatusCounts() {
+                const okCount = filteredCompanies.filter(
+                    (c) => c.svg_data.last_status === "success",
+                ).length;
+                const warnCount = filteredCompanies.filter(
+                    (c) => c.svg_data.last_status === "warning",
+                ).length;
+                const downCount = filteredCompanies.filter(
+                    (c) => c.svg_data.last_status === "danger",
+                ).length;
+
+                document.getElementById("warnCount").textContent = warnCount;
+                document.getElementById("downCount").textContent = downCount;
+                document.getElementById("statusSummary").textContent =
+                    `${okCount} operational, ${warnCount} with issues, ${downCount} down.`;
+            }
+
+            function renderCompanies(companies) {
+                const grid = document.getElementById("companiesGrid");
+                grid.innerHTML = "";
+
+                // Sort companies before rendering
+                const sortedCompanies = sortCompanies(companies);
+
+                sortedCompanies.forEach((company) => {
+                    grid.appendChild(createCompanyCard(company));
+                });
+
+                updateStatusCounts();
+            }
+
+            function filterCompanies(searchTerm) {
+                const term = searchTerm.toLowerCase();
+                filteredCompanies = allCompanies.filter((company) =>
+                    company.company_name.toLowerCase().includes(term),
+                );
+                renderCompanies(filteredCompanies);
+            }
+
+            async function loadCompanies() {
+                // Prevent multiple simultaneous refreshes
+                if (isRefreshing) {
+                    console.log("Refresh already in progress, skipping...");
+                    return;
+                }
+
+                isRefreshing = true;
+                const loadingState = document.getElementById("loadingState");
+                const errorState = document.getElementById("errorState");
+                const companiesGrid = document.getElementById("companiesGrid");
+                const refreshBtn = document.getElementById("refreshBtn");
+                const floatingRefreshBtn = document.querySelector(
+                    ".floating-refresh-btn",
+                );
+
+                // Disable refresh buttons during loading
+                if (refreshBtn) refreshBtn.disabled = true;
+                if (floatingRefreshBtn) floatingRefreshBtn.disabled = true;
+
+                loadingState.classList.remove("hidden");
+                errorState.classList.add("hidden");
+                companiesGrid.classList.add("hidden");
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/companylist`);
+
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP error! status: ${response.status}`,
+                        );
+                    }
+
+                    const data = await response.json();
+                    allCompanies = data.companies || [];
+                    filteredCompanies = [...allCompanies];
+
+                    loadingState.classList.add("hidden");
+                    companiesGrid.classList.remove("hidden");
+
+                    renderCompanies(filteredCompanies);
+
+                    // Reset countdown after successful load
+                    secondsUntilRefresh = 600;
+                    updateAllCountdowns();
+                } catch (error) {
+                    console.error("Error loading companies:", error);
+                    loadingState.classList.add("hidden");
+                    errorState.classList.remove("hidden");
+                    document.getElementById("errorMessage").textContent =
+                        `Failed to load companies: ${error.message}`;
+                } finally {
+                    // Re-enable refresh buttons
+                    isRefreshing = false;
+                    if (refreshBtn) refreshBtn.disabled = false;
+                    if (floatingRefreshBtn) floatingRefreshBtn.disabled = false;
+                }
+            }
+
+            // Create floating controls container
+            const floatingControls = document.createElement("div");
+            floatingControls.className =
+                "fixed bottom-6 right-6 flex flex-col items-end space-y-3 z-50";
+
+            // Create theme toggle button
+            const themeToggleBtn = document.createElement("button");
+            themeToggleBtn.className =
+                "floating-theme-btn bg-gray-800 dark:bg-gray-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all opacity-0 hover:opacity-100 focus:opacity-100";
+            themeToggleBtn.style.transition = "opacity 0.3s ease";
+            themeToggleBtn.setAttribute("aria-label", "Toggle dark mode");
+            themeToggleBtn.onclick = () => {
+                const themeToggle = document.getElementById("themeToggle");
+                themeToggle.checked = !themeToggle.checked;
+                toggleTheme();
+            };
+
+            // Create refresh badge button
+            const refreshBadgeBtn = document.createElement("button");
+            refreshBadgeBtn.className =
+                "floating-refresh-btn bg-gray-800 dark:bg-gray-700 text-white p-2 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center space-x-2";
+            refreshBadgeBtn.innerHTML = `
+                <span class="material-icons text-sm">schedule</span>
+                <span id="floatingRefreshCountdown" class="text-sm font-medium">10:00</span>
+            `;
+            refreshBadgeBtn.onclick = () => {
+                if (!isRefreshing) {
+                    loadCompanies();
+                }
+            };
+
+            // Add hover effects
+            themeToggleBtn.addEventListener("mouseenter", () => {
+                themeToggleBtn.classList.remove("opacity-0");
+            });
+
+            themeToggleBtn.addEventListener("mouseleave", () => {
+                if (document.activeElement !== themeToggleBtn) {
+                    themeToggleBtn.classList.add("opacity-0");
+                }
+            });
+
+            themeToggleBtn.addEventListener("focus", () => {
+                themeToggleBtn.classList.remove("opacity-0");
+            });
+
+            themeToggleBtn.addEventListener("blur", () => {
+                themeToggleBtn.classList.add("opacity-0");
+            });
+
+            // Add floating controls to container
+            floatingControls.appendChild(themeToggleBtn);
+            floatingControls.appendChild(refreshBadgeBtn);
+            document.body.appendChild(floatingControls);
+
+            // Event listeners
+            document
+                .getElementById("themeToggle")
+                .addEventListener("change", toggleTheme);
+
+            document
+                .getElementById("searchInput")
+                .addEventListener("input", (e) => {
+                    filterCompanies(e.target.value);
+                });
+
+            document
+                .getElementById("refreshBtn")
+                .addEventListener("click", () => {
+                    if (!isRefreshing) {
+                        loadCompanies();
+                    }
+                });
+
+            document
+                .getElementById("toggleNavBtn")
+                .addEventListener("click", toggleNavbar);
+
+            // Start countdown and load companies on page load
+            document.addEventListener("DOMContentLoaded", () => {
+                // Initialize theme (light mode is default)
+                initTheme();
+
+                // Restore navbar visibility state
+                const savedNavState = localStorage.getItem("navVisible");
+                if (savedNavState !== null) {
+                    isNavVisible = savedNavState === "true";
+                    if (!isNavVisible) {
+                        const navSection =
+                            document.getElementById("navSection");
+                        const toggleBtn =
+                            document.getElementById("toggleNavBtn");
+                        navSection.classList.remove("nav-visible");
+                        navSection.classList.add("nav-hidden");
+                        toggleBtn.innerHTML =
+                            '<span class="material-icons text-sm">menu_open</span>';
+                        toggleBtn.title = "Show navigation bar";
+                    }
+                }
+
+                startCountdown();
+                loadCompanies();
+            });
+        </script>
+    </body>
+</html>
