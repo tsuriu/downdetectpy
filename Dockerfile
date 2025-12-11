@@ -12,7 +12,7 @@ WORKDIR /app
 # Install system and browser dependencies for Playwright
 RUN apt-get update && apt-get install -y \
     wget gnupg ca-certificates curl unzip \
-    libglib2.0-0 libnss3 libgconf-2-4 libfontconfig1 libx11-xcb1 \
+    libglib2.0-0 libnss3 libfontconfig1 libx11-xcb1 \
     libxcomposite1 libxcursor1 libxdamage1 libxext6 libxi6 \
     libxtst6 libxrandr2 libasound2 libatk1.0-0 libatk-bridge2.0-0 \
     libgtk-3-0 libdrm2 libgbm1 lsb-release fonts-liberation \
