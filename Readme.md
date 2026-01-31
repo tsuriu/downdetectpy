@@ -7,6 +7,9 @@ A **FastAPI-based web scraper** that extracts outage and service status data fro
 ## 🌟 Features
 
 - **Intelligent caching system** - Limits requests to once every 10 minutes
+- **Scraping Resiliency** - Handles Cloudflare challenges and browser detection
+- **Domain Fallback** - Automatically switches to `.com` if primary domain is blocked
+- **Cache Fallback** - Returns stale/expired cache if scraping fails, ensuring 100% uptime
 - **Real-time scraping** of Downdetector status pages
 - **Time series data** for service outages and performance trends
 - **Problem statistics** and detailed outage reports
@@ -164,7 +167,8 @@ Clears only cache entries that have expired, keeping valid cached data.
   "cache_timestamp": "2023-12-11T10:30:00",
   "cache_expires_at": "2023-12-11T10:40:00",
   "from_cache": false,
-  "cache_hit": false
+  "cache_hit": false,
+  "is_fallback": false
 }
 ```
 

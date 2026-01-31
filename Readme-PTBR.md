@@ -7,6 +7,9 @@ Um **web scraper baseado em FastAPI** que extrai dados de status e interrupçõe
 ## 🌟 Funcionalidades
 
 - **Sistema de cache inteligente** - Limita requisições a uma vez a cada 10 minutos
+- **Resiliência de Scraping** - Lida com desafios do Cloudflare e detecção de navegador
+- **Fallback de Domínio** - Alterna automaticamente para `.com` se o domínio primário for bloqueado
+- **Fallback de Cache** - Retorna cache antigo/expirado se o scraping falhar, garantindo disponibilidade
 - **Scraping em tempo real** das páginas de status do Downdetector
 - **Dados de séries temporais** para interrupções de serviços e tendências de performance
 - **Estatísticas de problemas** e relatórios detalhados de interrupções
@@ -195,7 +198,9 @@ Limpa apenas as entradas de cache que expiraram, mantendo dados cacheados válid
   "cache_timestamp": "2023-12-11T10:30:00",
   "cache_expires_at": "2023-12-11T10:40:00",
   "from_cache": true,
-  "cache_hit": true
+  "cache_hit": true,
+  "is_fallback": true,
+  "fallback_reason": "Scraping failed"
 }
 ```
 

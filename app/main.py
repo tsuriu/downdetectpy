@@ -33,8 +33,8 @@ def ensure_cache_dir():
         os.makedirs(CACHE_DIR)
 
 
-def load_cached_data(cache_file: str) -> Optional[Dict[str, Any]]:
-    """Load cached data if it exists and is still valid."""
+def load_cached_data(cache_file: str, ignore_expiration: bool = False) -> Optional[Dict[str, Any]]:
+    """Load cached data if it exists. Optionally ignore expiration for fallback."""
     if not os.path.exists(cache_file):
         return None
 
@@ -42,20 +42,19 @@ def load_cached_data(cache_file: str) -> Optional[Dict[str, Any]]:
         with open(cache_file, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        # Check if cache is still valid
-        cache_timestamp = datetime.fromisoformat(data.get("cache_timestamp", ""))
+        cache_timestamp_str = data.get("cache_timestamp")
+        if not cache_timestamp_str:
+            return None
+            
+        cache_timestamp = datetime.fromisoformat(cache_timestamp_str)
         current_time = datetime.now()
 
-        if current_time - cache_timestamp < timedelta(seconds=CACHE_DURATION):
+        if ignore_expiration or (current_time - cache_timestamp < timedelta(seconds=CACHE_DURATION)):
             return data
         else:
-            # Cache expired
-            os.remove(cache_file)  # Remove expired cache
+            # Cache expired - don't remove it yet, might need it for fallback
             return None
     except (json.JSONDecodeError, ValueError, KeyError, FileNotFoundError):
-        # If there's any error reading the cache, remove it
-        if os.path.exists(cache_file):
-            os.remove(cache_file)
         return None
 
 
@@ -91,14 +90,29 @@ async def get_companylist_with_cache(domain: str) -> Dict[str, Any]:
     # If not in cache or expired, fetch new data
     print(f"Cache miss for domain: {domain}, fetching new data...")
     start_time = time.perf_counter()
-    result = await scrape_downdetector_links(domain)
-    end_time = time.perf_counter()
+    try:
+        result = await scrape_downdetector_links(domain)
+    except Exception as e:
+        print(f"Error during scraping for {domain}: {e}")
+        result = None
 
+    end_time = time.perf_counter()
     duration = round(end_time - start_time, 3)
 
     if not result:
+        # SCRAPING FAILED: Try to load expired cache as fallback
+        print(f"Scraping failed for {domain}. Attempting fallback to expired cache...")
+        fallback_data = load_cached_data(cache_file, ignore_expiration=True)
+        if fallback_data:
+            print(f"Using fallback (expired) cache for {domain}")
+            fallback_data["from_cache"] = True
+            fallback_data["cache_hit"] = True
+            fallback_data["is_fallback"] = True
+            fallback_data["fallback_reason"] = "Scraping failed"
+            return fallback_data
+            
         raise HTTPException(
-            status_code=500, detail="Failed to retrieve data from Downdetector"
+            status_code=500, detail="Failed to retrieve data from Downdetector and no cache available"
         )
 
     # Prepare response
@@ -147,14 +161,29 @@ async def get_status_with_cache(
     # If not in cache or expired, fetch new data
     print(f"Cache miss for {company} on {domain}, fetching new data...")
     start_time = time.perf_counter()
-    result = await downdetector(company, domain, timezone)
+    try:
+        result = await downdetector(company, domain, timezone)
+    except Exception as e:
+        print(f"Error during scraping for {company} on {domain}: {e}")
+        result = None
+        
     end_time = time.perf_counter()
-
     duration = round(end_time - start_time, 3)
 
     if not result:
+        # SCRAPING FAILED: Try to load expired cache as fallback
+        print(f"Scraping failed for {company} on {domain}. Attempting fallback to expired cache...")
+        fallback_data = load_cached_data(cache_file, ignore_expiration=True)
+        if fallback_data:
+            print(f"Using fallback (expired) cache for {company}")
+            fallback_data["from_cache"] = True
+            fallback_data["cache_hit"] = True
+            fallback_data["is_fallback"] = True
+            fallback_data["fallback_reason"] = "Scraping failed"
+            return fallback_data
+
         raise HTTPException(
-            status_code=500, detail=f"Failed to retrieve data for {company}"
+            status_code=500, detail=f"Failed to retrieve data for {company} and no cache available"
         )
 
     # Prepare response

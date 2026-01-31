@@ -17,14 +17,41 @@ async def scrape_downdetector_links(domain: str = "com.br"):
         
         context = await browser.new_context(
             viewport={'width': 1280, 'height': 1024},
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+            extra_http_headers={
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'none',
+                'Sec-Fetch-User': '?1',
+                'Upgrade-Insecure-Requests': '1',
+            }
         )
         
         page = await context.new_page()
         
         try:
-            await page.goto(url, timeout=60000)
-            await page.wait_for_selector('div.company-index', timeout=10000)
+            print(f"Navigating to {url}...")
+            await page.goto(url, timeout=60000, wait_until='networkidle')
+            
+            # Check for Cloudflare challenge
+            content = await page.content()
+            if "Verificando se você é humano" in content or "Um momento..." in content or "cf-challenge" in content:
+                print(f"Cloudflare challenge detected on {domain}. Trying to wait...")
+                # Wait for up to 15 seconds for the challenge to pass
+                try:
+                    await page.wait_for_selector('div.company-index', timeout=15000)
+                except:
+                    print(f"Challenge didn't pass on {domain}.")
+                    # If we are on .com.br, try falling back to .com
+                    if domain == "com.br":
+                        print("Falling back to downdetector.com...")
+                        return await scrape_downdetector_links("com")
+                    else:
+                        raise Exception(f"Cloudflare challenge blocked access to {domain}")
+
+            await page.wait_for_selector('div.company-index', timeout=20000)
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
             await asyncio.sleep(2)
             
